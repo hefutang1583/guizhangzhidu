@@ -1,0 +1,736 @@
+内容为 AI 生成，可能不准确，请谨慎参考
+假如是你计算机科学与技术专业的学生，正要写
+毕业论文和设计了，...
+回答
+研究报告：关于“基于 RAG 技术的校园规章制度咨询助手的设计与实现”毕业设计选题
+的综合评估
+报告日期： 2026 年 4 月 14 日
+报告撰写人： 资深 AI 技术研究员
+评估对象： 一份计算机科学与技术专业的毕业设计选题摘要
+核心技术： 检索增强生成 (Retrieval-Augmented Generation, RAG)
+摘要重述与核心议题拆解
+在进行深入评估之前，我们首先重述并拆解该毕业设计选题摘要的核心内容：
+问题痛点： 高校规章制度存在“难查找、难理解、难适配”三大难题，传统问答系统则
+面临“信息孤岛”与响应滞后。这是一个非常精准且普遍存在于高等教育管理中的现实问
+题。
+解决方案： 提出并实现一个基于检索增强生成（RAG）技术的校园规章制度咨询助手。
+技术架构：
+基座： 大语言模型 (LLM)。
+核心技术： RAG、向量数据库。
+内容为 AI 生成，可能不准确，请谨慎参考
+系统模块： 知识库构建、混合检索、智能生成。
+实现流程：
+1.数据预处理： 对非结构化文档进行解析、分词、语义切分，并通过嵌入模型
+（Embedding Model）向量化后存入向量数据库。
+2.问答流程： 采用混合检索策略召回知识片段，作为上下文（Context）输入 LLM，约束其
+生成基于本地知识的准确回答。
+3.预期效果： 缓解 LLM 在垂直领域的幻觉问题和语义理解偏差，在意图识别和答案准确率
+上显著优于基座模型，实现知识的动态更新与精准问答。
+4.价值贡献： 为高校管理智能化与数字化转型提供创新方式与实践参考。
+第一章：选题的前沿性、可行性与学术价值综合评估
+本章旨在从宏观层面评估该选题作为一篇 2026 年的计算机科学毕业论文的整体质量，包括
+其技术前沿性、项目可行性以及学术与实践价值。
+1.1 技术前沿性分析：紧扣 AI 发展脉搏
+截至 2026 年初，大语言模型（LLM）的应用已经从通用聊天机器人阶段，深入到各行各业
+的垂直领域落地。单纯依赖通用 LLM（如 GPT 系列、Llama 系列）进行微调（Fine-
+tuning）的模式，因其高昂的训练成本、更新困难以及在专业领域中仍无法根除的“幻
+觉”问题，其局限性日益凸显。
+正是在此背景下，检索增强生成（RAG）技术在过去两到三年（2023-2025 年）中迅速崛
+起，成为将 LLM 能力与私有或专业知识库相结合的主流范式 [[1]][[2]]。RAG 通过“先检
+索，后生成”的机制，为 LLM 提供了实时的、可信的、领域特定的知识源，从而极大地提
+升了回答的准确性和可靠性 [[3]][[4]]。
+该选题精准地捕捉到了这一技术趋势。它没有停留在“如何使用 LLM”的浅层问题上，而
+内容为 AI 生成，可能不准确，请谨慎参考
+是深入到“如何更好地将 LLM 应用于特定领域”的核心挑战中。选择 RAG 作为核心技术，
+本身就体现了对当前 AI 应用开发领域最新进展的深刻理解。特别是在 2026 年，业界对
+RAG 的探索已经从基础实现，发展到对检索策略、分块方法、多模态融合、动态知识更新
+等更深层次的优化 [[5]]。因此，该选题在技术栈的选择上具备高度的前沿性。
+1.2 项目可行性与工作量评估
+对于一篇本科毕业设计而言，选题必须在具有挑战性的同时，确保在有限的时间和资源内
+可以完成。我们从技术实现和工作量两个维度进行评估。
+1.2.1 技术实现的可行性
+成熟的开源生态： 到了 2026 年，围绕 RAG 的开发工具链已经相当成熟。诸如
+LangChain、LlamaIndex 等框架极大地降低了构建 RAG 应用的门槛，它们封装了数据加载、
+文本切分、向量化、检索、与 LLM 交互等复杂流程 [[6]]。
+丰富的模型选择：
+LLM： 市场上存在大量可选的 LLM，既有性能强大的闭源 API（如 OpenAI 的 GPT-4.1
+系列、Mistral Large） [[7]][[8]]也有效果优异、可供本地化部署的开源模型（如 Llama 3.1 
+8B, Mistral 7B, GLM-4） [[9]][[10]][[11]]。这为学生提供了根据实际设备和预算进行选择的
+灵活性。
+Embedding Model： 同样，嵌入模型的选择也极为丰富，从经典的 all-MiniLM 系列到效
+果更佳的 BGE (BAAI General Embedding)系列（如 bge-large-zh-v1.5）和 GTE 系列，这些模
+型在 Hugging Face 等平台上唾手可得，并且有大量关于其性能评测的公开数据 [[12]][[13]]
+[[14]]。
+向量数据库： 开源向量数据库如 Milvus, Qdrant, Chroma, Faiss 等技术成熟，社区活跃，
+文档齐全，部署和使用难度对于计算机专业的学生来说是可控的 [[15]][[16]][[17]]。
+清晰的实现路径： 摘要中描述的“知识库构建 -> 混合检索 -> 智能生成”的三大模块，
+构成了一个标准且清晰的 RAG 系统实现蓝图。这表明选题人对项目有着明确的规划，降低
+了项目失控的风险。
+内容为 AI 生成，可能不准确，请谨慎参考
+1.2.2 工作量评估
+根据相关软件开发工作量评估标准，该项目的难度可评为“中等偏上”，工作量饱满，非
+常适合作为一篇优秀的毕业设计 [[18]][[19]][[20]]。
+核心工作量分布：
+1.数据层（工作量：大）： 这是最耗时且最容易被低估的部分。高校规章制度通常以
+PDF、Word、HTML 等多种格式存在，格式混乱，包含大量表格、页眉页脚、水印等噪声。
+仅数据清洗、解析和结构化提取就是一个不小的工程挑战。
+2.模型与算法层（工作量：中）： 包括选择和配置 LLM、Embedding 模型；设计并实现文
+本切分策略（Chunking Strategy）；实现混合检索算法（如 BM25 + 向量检索）；设计高效
+的 Prompt Engineering 模板。
+3.系统实现层（工作量：中）： 使用 Python（如 Flask/FastAPI）搭建后端服务，集成各个
+模块，并可能需要开发一个简单的前端界面（Web 或命令行）用于交互和展示。
+4.评测层（工作量：大）： 设计并构建评测体系是体现论文学术深度的关键。这包括创建
+高质量的评测问答对（QA pairs）、选择合适的评测指标、编写自动化评测脚本、进行多
+次实验并分析结果。这部分的工作量不亚于核心功能的开发 [[21]][[22]]。
+综上，该选题的工作量足以支撑一篇毕业论文的体量，且核心模块界定清晰，允许在时间
+紧张时进行范围裁剪（例如，初期只支持部分学院的规章，或简化前端界面），保证了项
+目的可完成性。
+1.3 学术价值与实践意义
+学术价值：
+1.垂直领域应用的实证研究： 该项目是对 RAG 技术在“高等教育管理”这一高度垂直且知
+识密集型领域的一次深度实证研究。论文的成果可以为 RAG 在其他类似领域（如法律、金
+融、医疗）的应用提供宝贵的经验和数据。
+内容为 AI 生成，可能不准确，请谨慎参考
+2.模型能力边界的探索： 通过对比 RAG 系统与基座 LLM 在特定任务上的表现，可以清晰
+地展示 RAG 在缓解幻觉、提升领域知识准确性方面的具体效果，为 LLM 的能力边界和优
+化路径提供了有力的学术证据 [[23]]。
+3.评测体系的构建： 为垂直领域知识问答系统设计一套科学、全面的评测指标和方法论，
+本身就具有学术价值。摘要中提到的“意图识别准确率”和“答案准确率”是基础，论文
+中可以进一步扩展到忠实度（Faithfulness）、答案相关性（Answer Relevance）、上下文相
+关性（Context Relevance）等更细致的 RAG 专项评测维度 [[24]][[25]][[26]]。
+4.实践意义：
+1.解决高校实际痛点： 该系统直面师生在日常工作中遇到的信息获取难题，能够极大地提
+升行政效率和师生满意度。例如，新生可以快速了解报到流程、奖学金申请条件；教职工
+可以便捷查询财务报销、科研项目申报等规定。
+2.推动高校智慧管理： 这是一个典型的“AI+教育管理”应用，是高校数字化转型和智慧
+校园建设中的一个具体、可落地的切入点 [[27]][[28]]。其成功实践可以作为案例，启发更
+多校园管理场景的智能化升级。
+3.知识管理的现代化： 该系统将静态、分散的规章制度文档，转化为了一个动态、可交互
+的智能知识库，实现了知识的高效利用和传承，这本身就是一种管理模式的创新 [[29]]
+[[30]]。
+第二章：核心技术模块的深度剖析与优化建议
+本章将深入摘要中提到的三大核心模块，结合 2026 年的技术现状和搜索结果，进行详细的
+技术分析，并提出可供选题人参考的深化和优化方向。
+2.1 知识库构建模块：从“能用”到“好用”的基石
+摘要中提到了“解析、分词与语义切分”，这涵盖了知识库构建的核心流程。但要构建一
+个高质量的知识库，每一步都充满挑战和优化空间。
+内容为 AI 生成，可能不准确，请谨慎参考
+2.1.1 文档解析与预处理
+挑战： 高校规章制度通常是包含复杂格式的 PDF 文档，其中混杂着表格、列表、图表、
+页眉页脚等。直接提取纯文本会丢失大量结构化信息，甚至破坏语义。例如，一个关于奖
+学金评定标准的表格，如果被粗暴地转为纯文本，其行列关系将不复存在，LLM 难以正确
+理解。
+深度实现建议：
+采用先进的文档解析工具： 不应满足于简单的 PyPDF2 等库。应研究并使用如
+unstructured.io、LlamaParse 或结合 OCR 技术的方案（如 PaddleOCR），这些工具能更好地
+解析 PDF 中的表格、列表等结构，并将其转换为 Markdown 或 JSON 等半结构化格式。
+处理表格数据： 对于解析出的表格，不应将其简单地线性化为文本。可以尝试将其转换
+为 CSV 格式或直接在 Prompt 中以 Markdown 表格形式提供给 LLM，以最大限度地保留其
+结构信息。有研究表明，这能显著提升 LLM 对表格内容的理解能力 [[31]]。
+元数据（Metadata）提取与利用： 在解析文档时，应尽可能提取元数据，如文件名、发
+布日期、发布部门、制度的生效/失效日期、版本号等。这些元数据在后续的检索过滤和版
+本控制中至关重要。
+2.1.2 文本切分（Chunking）策略
+摘要中提到的“语义切分”是关键。这是决定 RAG 系统召回质量的“咽喉”环节。
+传统方法的局限： 简单的固定长度切分（Fixed-size Chunking）或递归字符切分
+（Recursive Character Text Splitting）虽然实现简单，但极易在语义单元的中间断开，导致
+上下文信息不完整 [[32]][[33]]。
+“语义切分”的深化实现：
+基于规则的结构化切分： 利用文档的章节（如“第一章”、“1.1 节”）、段落、标题
+等自然结构进行切分。这要求预处理阶段能准确识别这些结构。
+内容为 AI 生成，可能不准确，请谨慎参考
+基于 NLP 的句子切分： 使用 spaCy 或 NLTK 等库，将文档先切分为句子，再将语义相
+近的连续句子组合成一个 Chunk。
+基于嵌入模型的语义切分（Semantic Chunking）： 这是一种更先进的方法。它计算连
+续句子（或小段落）之间嵌入向量的余弦相似度。当相似度出现一个“断崖式”下降时，
+就认为这里是一个语义边界，适合进行切分 [[34]][[35]]。这种方法能最大程度地保证每个
+Chunk 内部的语义连贯性。
+Agentic Chunking： 2025-2026 年兴起的一种更智能的思路，利用一个强大的 LLM（如
+GPT-4）作为“切分智能体”，让它阅读一小段文本后，自己判断在哪里切分最合理。虽
+然成本较高，但在处理复杂、无明显结构化特征的文本时效果优异。
+最佳实践建议： 毕业设计中可以实现并对比多种切分策略，例如，实现一个基础的递归
+字符切分作为 Baseline，然后重点实现并优化一种语义切分策略，通过实验数据证明其优
+越性。
+2.1.3 嵌入模型与向量数据库的选择
+Embedding Model：
+选型考量： 应重点选择在中文任务上表现优异，并且与计划使用的 LLM 在语义空间上
+较为匹配的模型。BGE 系列（如 bge-large-zh-v1.5）和多语言的 E5 系列都是 2026 年非常可
+靠的选择 [[36]][[37]]。选题人应参考最新的 MTEB (Massive Text Embedding Benchmark)等
+权威榜单的中文评测结果。
+微调可能性： 若想进一步提升深度，可以考虑在小规模的校园领域相关问答对上对
+Embedding 模型进行微调，使其更懂校园“黑话”（如“二学位”、“保研”、“青教
+赛”等）。
+向量数据库：
+技术对比：
+Milvus: 功能强大，高度可扩展，支持多种索引类型和相似度计算方法，适合大规模、高
+内容为 AI 生成，可能不准确，请谨慎参考
+并发的企业级应用。对于一个完整的校园系统来说，是未来的理想选择 [[38]][[39]][[40]]。
+Qdrant: 用 Rust 编写，性能优秀，尤其在元数据过滤（filtered search）方面表现突出，
+资源消耗相对较低。如果系统需要频繁根据“发布年份”、“所属部门”等元数据进行筛
+选后检索，Qdrant 是一个极具吸引力的选项 [[41]][[42]]。
+Chroma/FAISS: 更轻量级，Chroma 尤其易于上手和集成，适合项目初期快速原型验证。
+FAISS 是 Facebook AI 推出的库，性能极高，但更多是一个底层库，需要自行封装服务 
+[[43]][[44]]。
+选型建议： 对于毕业设计，建议从 Chroma 入手快速搭建原型。在论文中，可以专门设
+立一节，对 Milvus 和 Qdrant 进行调研和性能对比分析，阐述在未来生产环境下为何会选择
+其中之一，这能显著提升论文的技术深度 [[45]]。
+2.2 混合检索模块：确保“找得准、找得全”
+摘要中的“混合检索”是提升召回率和精确率的关键。
+为何需要混合检索：
+向量检索（语义检索）： 擅长理解“同义不同词”的模糊查询。例如，用户问“没钱交
+学费怎么办”，它可以召回到关于“助学贷款”、“困难补助”、“绿色通道”的相关条
+例。
+关键词检索（如 BM25/TF-IDF）： 在处理包含特定术语、编号、人名等专有名称的查
+询时表现更佳。例如，用户问“《XXX 大学本科生学籍管理规定》的第十五条是什么”，
+关键词检索能精准定位。
+实现策略：
+1.并行检索与融合： 分别执行向量检索和关键词检索，然后对两路结果进行融合。融合策
+略是研究的重点，简单的方法是加权组合分数，但更高级的方法是使用重排序模型（Re-
+ranking Model）。
+内容为 AI 生成，可能不准确，请谨慎参考
+2.重排序（Re-ranking）： 将两路召回的前 K 个结果（例如，总共 20 个文档块）合并，然
+后使用一个更强大的 Cross-Encoder 模型对“查询”和每个“文档块”的对（pair）进行打
+分，根据这个更精确的相关性分数重新排序，最后选择 Top-N（例如，Top 3-5）个文档块
+作为最终上下文。这在 2026 年已被证明是提升 RAG 性能的 SOTA（State-of-the-Art）方法
+之一。
+3.深化建议： 论文中不仅要实现混合检索，更要花篇幅研究和实验不同的融合策略和重排
+序模型，并用评测数据（如 MRR, NDCG@k）来量化不同策略带来的提升 [[46]][[47]]。
+2.3 智能生成模块：确保“说得对、说得好”
+这是 RAG 的最后一环，也是直接面向用户的一环。
+Prompt Engineering 的艺术： 约束 LLM 基于本地知识生成回答的核心在于精心设计的
+Prompt。一个好的 Prompt 模板通常包含：
+角色设定： "你是一个精通 XX 大学所有规章制度的智能助手，你的回答必须严谨、准确、
+并基于我提供的上下文。"
+上下文注入： Context: {retrieved_chunks}
+任务指令： "请根据以上上下文，回答用户的问题。如果上下文中没有足够信息，请明
+确告知用户'根据现有资料无法回答该问题'，严禁自行编造。"
+用户问题： Question: {user_query}
+格式要求： "请用清晰、分点的形式回答。如果可能，请在回答的每一部分后面注明信
+息来源的文档名称和章节。"
+处理多轮对话上下文：
+挑战： 用户的问题常常是连续的，例如：“申请奖学金需要什么条件？” -> “那对英语
+四级有要求吗？”。系统需要理解第二问中的“那”指的是“奖学金申请”。
+内容为 AI 生成，可能不准确，请谨慎参考
+实现方法：
+1.对话历史管理： 将最近的几轮对话历史一并加入到 Prompt 中。
+2.查询重写（Query Rewriting）： 在进行检索之前，先用一个 LLM 将会话历史和当前问
+题作为输入，生成一个独立的、包含完整上下文的新查询。例如，将 {"history": "Q:申请奖
+学金需要什么条件? A:...", "current_q": "那对英语四级有要求吗？"} 重写为 "申请奖学金对
+英语四级有要求吗？"。然后再用这个重写后的查询去进行检索。这是 2026 年处理 RAG 多
+轮对话的主流且高效的方法 [[48]][[49]]。
+生成溯源（Citation）： 这是提升系统可信度的关键功能。系统不仅要给出答案，还要
+能告诉用户答案是基于哪份文件的哪个部分。实现上，可以在检索到的文档块中包含其元
+数据（文件名、页码、章节号），并在 LLM 生成答案后，通过后处理步骤，将答案内容与
+来源块进行匹配，从而附上引用。
+第三章：选题的创新性与差异化分析
+摘要中提到该系统是“创新方式”，我们需要深入分析其创新点在何处，以及相比现有研
+究和系统，它可以做出哪些差异化贡献 [[50]][[51]][[52]]。
+3.1 核心创新点分析
+1. 动态知识更新机制： 这是摘要中一个非常亮眼的提法，也是一个重要的创新点。传统知
+识库是一次性构建，更新困难。一个真正有用的规章制度系统必须能跟上制度的“增、删、
+改”。
+*   如何实现：
+*   增量更新流程： 设计一个自动化的 ETL（Extract, Transform, Load）管道。该管道可以
+定期（如每天一次）扫描学校官网的“通知公告”、“制度文件”等板块。
+*   版本控制与一致性：
+内容为 AI 生成，可能不准确，请谨慎参考
+*   通过比对文件名、发布日期或文件内容的哈希值，识别出新增或更新的文档。
+*   对于更新的文档，不是简单覆盖，而是采用版本管理策略。在向量数据库中，可以为同
+一份制度的不同版本向量赋予不同的版本号或时间戳元数据 [[53]][[54]][[55]]。
+*   在检索时，默认检索最新版本的文档，但也要支持用户查询历史版本。
+*   冲突检测： 这是一个更具挑战性的创新点。利用 LLM 的语义理解能力，可以初步检测
+新发布的制度是否与现有制度在某些条款上存在潜在冲突（例如，同一事项在两个文件中
+规定不一）。系统可以将这些潜在冲突点标记出来，供人工审核 [[56]]。
+*   差异化： 大多数基础的 RAG 教程和项目都侧重于静态知识库的搭建，而一个鲁棒的动
+态更新与版本管理机制，将是本论文一个巨大的工程和学术亮点 [[57]][[58]][[59]]。
+2. 混合检索与重排序的深度优化：
+*   如 2.2 节所述，单纯实现混合检索已不新奇，但深入研究不同检索策略的融合权重、设
+计或微调一个适用于规章制度文本的重排序模型（Cross-Encoder），并通过详尽的实验证
+明其有效性，这构成了算法层面的创新。
+3. 面向“适配”的个性化问答：
+*   摘要中的“难适配”直指规章制度的普适性与个体情况的差异性。一个创新的方向是实
+现“上下文感知”的个性化问答。
+*   如何实现： 系统在获得用户授权后，可以接入其基本画像（例如：通过校园统一身份认
+证获取用户的年级、学院、专业、政治面貌等信息）。当用户提问时，系统将这些个人信
+息作为额外的上下文，与问题一起进行查询重写或直接注入最终的生成 Prompt 中。
+*   示例： 用户问“我能申请这个奖学金吗？”。系统结合该用户是“大二、软件工程专业、
+党员”的画像，去检索和判断该奖学金的申请条件是否匹配，从而给出“根据你的情况，
+你满足 A、B 条件，但不满足 C 条件（要求大三以上）”这样高度个性化和适配的回答。
+这远比给出一份通用的申请条件要有价值得多。
+内容为 AI 生成，可能不准确，请谨慎参考
+4. 结构化知识与非结构化知识的融合（GraphRAG）：
+*   这是一个极具前瞻性的创新方向。除了向量数据库中的非结构化文本块，还可以构建一
+个知识图谱（Knowledge Graph），来存储规章制度之间的结构化关系（例如，《A 规定》
+是《B 规定》的实施细则）、实体（如“教务处”、“研究生院”）及其职责等。
+*   在 RAG 流程中，可以先通过知识图谱进行初步的推理和相关实体、规定的定位，然后
+将这些信息作为引导，再去向量数据库中进行更精准的文本块检索。这种 GraphRAG 的方
+法能更好地处理需要多步推理的复杂问题 [[60]]。
+3.2 与现有研究的差异
+相比通用 RAG 研究： 通用 RAG 研究更多关注算法本身（如更高效的检索、更长的上下
+文窗口），而本选题的价值在于将这些通用技术应用到“高校规章”这一具体、复杂且有
+价值的场景中，进行深度的工程实践和场景优化，产出的是领域内的“最佳实践”（Best 
+Practice）。
+相比其他校园问答系统： 许多现有的校园问答机器人是基于 FAQ 的检索式问答或简单
+的意图识别+模板回复，无法处理长文本和复杂推理 [[61]]。本选题利用 LLM 的生成和理
+解能力，实现了从“信息匹配”到“知识理解与生成”的跨越。相比同样使用 RAG 的校园
+问答系统案例 [[62]][[63]]本选题可以聚焦于“动态更新”、“个性化适配”、“制度冲突
+检测”等更深层次的功能，形成差异化优势。
+第四章：评测体系的构建与科学性
+一份优秀的毕业论文，其结论的可靠性高度依赖于评测体系的科学性。摘要中“评测实验
+表明...显著优于基座模型”的论断需要强有力的数据支撑。
+4.1 构建高质量的评测数据集
+数据来源：
+真实问题收集： 从学校的贴吧、论坛、咨询邮箱、教务处 FAQ 等渠道收集师生们实际
+内容为 AI 生成，可能不准确，请谨慎参考
+提出的问题。
+人工构建： 针对规章制度的重点、难点、易混淆点，由选题人模拟不同身份（新生、毕
+业生、青年教师等）设计问题。
+数据集构成：
+问题类型要丰富： 包括事实查询型（“报销需要哪些材料？”）、是非判断型（“大一
+学生可以转专业吗？”）、比较型（“A 奖学金和 B 奖学金有什么区别？”）、推理型
+（“我上学期挂了一科，会影响我评优吗？”）等。
+“黄金答案”与来源标注： 每个问题都需要有一个人工核实和撰写的标准答案，并清晰
+标注答案所依据的规章制度原文片段。
+包含“无法回答”的案例： 数据集中应包含一些现有规章制度无法覆盖或信息不足的问
+题，用于评测系统拒绝回答（而非幻觉）的能力 [[64]]。
+4.2 设计多维度、分层次的评测指标
+除了摘要中提到的“意图识别准确率”和“答案准确率”，一个全面的评测体系应包含以
+下三个层次：
+1. 检索模块评测（Component-level: Retrieval）：
+*   Precision@k, Recall@k: 召回的前 k 个文档块中有多少是与标准答案相关的。
+*   Mean Reciprocal Rank (MRR): 第一个相关文档块出现的排名的倒数的平均值，衡量找
+到第一个正确答案的速度。
+*   Normalized Discounted Cumulative Gain (NDCG@k): 综合考虑了召回文档的相关性程
+度和其在结果中的位置，是衡量排序质量的黄金指标 [[65]][[66]]。
+2. 生成模块评测（Component-level: Generation）：
+内容为 AI 生成，可能不准确，请谨慎参考
+*   RAGAS 框架： 这是 2026 年评测 RAG 生成质量的主流框架，它利用 LLM 作为评委，
+从多个维度自动化打分，非常适合本选题 [[67]][[68]][[69]]。
+*   Faithfulness (忠实度): 生成的答案是否完全基于提供的上下文，没有添加外部信息或产
+生幻觉。
+*   Answer Relevancy (答案相关性): 生成的答案是否直接、精准地回答了用户的问题。
+*   Context Precision & Context Recall (上下文精确率/召回率): 提供的上下文中，信噪比如
+何？是否包含了所有回答问题所需的必要信息？
+3. 端到端评测（End-to-End Evaluation）：
+*   答案准确率（Accuracy）： 将系统生成的最终答案与“黄金答案”进行比对。对于生
+成式任务，可以采用基于 LLM 的自动评判（判断二者语义是否一致）或人工评判。
+*   用户满意度调研： 设计调查问卷，邀请一小部分真实用户试用系统，并从答案的准确性、
+易懂性、响应速度、交互体验等多个方面收集主观反馈。
+*   A/B 测试： 将本系统与基座 LLM（无 RAG）、传统关键词搜索系统进行对比实验，让
+用户盲测并评价哪个系统的回答更好，用数据证明本系统的优越性 [[70]][[71]]。
+第五章：部署与未来展望的思考
+虽然毕业设计可能止步于原型系统，但在论文中展现对实际部署和未来发展的思考，能极
+大提升其完整性和深度。
+5.1 安全性与隐私保护
+数据安全： 规章制度本身可能包含未公开的草案，用户的查询可能涉及个人隐私。因此，
+系统在设计之初就应考虑安全问题。最佳实践是采用本地化部署方案，即将开源 LLM、
+Embedding 模型和向量数据库全部部署在校园内网的服务器上，确保所有数据不出校，避
+免了调用外部 API（如 OpenAI）可能导致的数据泄露风险 [[72]][[73]][[74]]。
+内容为 AI 生成，可能不准确，请谨慎参考
+访问控制： 对于一些敏感的、有阅读权限限制的规章（如人事、财务的内部文件），需
+要设计基于角色的访问控制（RBAC）机制。系统需与学校的统一身份认证系统打通，根
+据用户的身份（学生、教师、特定部门管理员）来过滤其可检索的知识范围，确保合规性 
+[[75]][[76]][[77]]。
+5.2 未来发展方向
+多模态支持： 未来的规章制度可能会包含流程图、示意图等。系统可以扩展为多模态
+RAG，能够理解图片内容，实现图文联合问答 [[78]]。
+主动推送与预警： 结合动态更新机制，当有与用户画像（如学院、年级）高度相关的新
+规章发布或重要变更时，系统可以向用户主动推送提醒。
+成为决策辅助工具： 对于管理者，系统可以进化为规章制度的“模拟器”。例如，在制
+定新规时，管理者可以输入草案，系统能够快速分析其与现有制度的关联和潜在冲突，辅
+助决策。
+第六章：结论与最终建议
+综合以上全方位、多角度的深度分析，我们对该毕业设计选题做出如下最终评价与建议：
+1. 选题综合评价：优秀
+该选题是一个非常优秀的计算机科学毕业设计题目。它具备以下特质：
+*   高前沿性： 紧扣 RAG 这一当前 AI 应用领域的热点和主流技术。
+*   高可行性： 技术路径清晰，开源生态成熟，工作量饱满且可控。
+*   高价值性： 兼具显著的学术研究价值和解决现实痛点的实践意义。
+*   高延展性： 选题的深度和广度都留有充足的探索空间，易于做出亮点和创新。
+内容为 AI 生成，可能不准确，请谨慎参考
+2. 对选题人的建议：
+*   明确核心创新点： 选题的成功关键在于“做出差异化”。建议从前述的“动态知识更新
+与版本管理”、“个性化适配问答”、“制度冲突检测”或“深度优化的混合检索与重排
+序”中，选择 1-2 个作为论文的核心攻关方向和创新亮点。
+*   重视数据工程： 切勿低估前期数据清洗和处理的难度和重要性。一个高质量、干净、结
+构化的知识库是整个系统的基石。
+*   以评测为导向： 在项目初期就应着手设计评测方案和构建评测数据集。整个开发过程应
+以提升评测指标为目标，这会让论文的逻辑更清晰，结论更有力。
+*   注重论文撰写： 在论文中，不仅要描述“做了什么”（What），更要深入阐述“为什
+么这么做”（Why）以及“做得怎么样”（How well）。例如，不仅要说用了混合检索，
+更要解释为什么需要混合检索，对比了哪些方案，最终方案效果如何，并用数据说话。
+总之，该选题为学生提供了一个绝佳的机会，去完整地经历一个前沿 AI 应用从问题定义、
+技术选型、系统设计、开发实现到科学评测的全过程。如果能够按照上述分析中的深度和
+广度去完成，这篇毕业论文无疑将具备极高的质量，并能充分展现该学生扎实的专业功底、
+前沿的技术视野和优秀的工程实践能力。我们对此选题予以高度肯定和强烈推荐。
+文献来源
+[5]. Language Models are Few-Shot Learners
+[184]. 2026  与时光共前行
+[310,314]. Marcel: A Lightweight and Open-Source Conversational Agent for University Student 
+Support
+以下来源未被直接引用
+PyTorch: An Imperative Style, High-Performance Deep Learning Library
+Attention is All you Need
+内容为 AI 生成，可能不准确，请谨慎参考
+Deep Residual Learning for Image Recognition
+其他来源
+[1,494]. Ovis: Structural Embedding Alignment for Multimodal Large Language Model
+[2,21,423,425]. Retrieval-Augmented Social Media Intelligence: Detecting and Reporting of 
+High-Risk Communication Patterns using Large Language Models
+[3,424,426]. Integrations - Securiti
+[4,15,427,430,452]. Artificial Intelligence Master of History
+[6,10,22,429]. Realisierung eines Document-Retrieval-Systems mit Large Language Models
+[7,23,422]. Answer validation using Large Language Model Systems
+[8,24]. embedding
+[9,12,428]. SoroIA: Diseño e Implementación de un Sistema Conversacional basado en Modelos 
+Grandes de Lenguaje para el Museo Sorolla
+[11]. Hands-On Large Language Models: Language Understanding and Generation
+[13]. Enhancing Review-based Recommender Systems with Attention-driven Models Leveraging 
+Large Language Model’s Embeddings
+[14,453]. Automation of the Request for Quotation Process using Large Language Models
+[16]. SecuredGPT: Pilotbetrieb eines On-Premises Large Language Model im 
+Wissensmanagement
+[17]. An Interactive Question-Answering System using Large Language Model and Retrieval-
+Augmented Generation in An Intelligent Tutoring System on the Programming Domain
+[18]. Study of usage of Large Language Model in industrial context
+[19]. Large Language Model Empowered Embedding Generator for Sequential Recommendation
+[20]. 大规模语言模型在复杂系统仿真与预测中的应用
+[25,28,34,37,41,44,462,481]. Personalized Fake News Aware Recommendation System
+内容为 AI 生成，可能不准确，请谨慎参考
+[26,29,30,38,42,45,46,482]. Scalable Computing: Practice and Experience
+[27,36,39,487]. A TEMPORAL EXPERT FINDING METHODOLOGY BASED ON UNITED 
+AUTHOR-DOCUMENT-TOPIC GRAPHS
+[31,40]. Baseline vs. Benchmark
+[32]. Benchmark Testing
+[33]. Baseline Data: Build a Reliable Foundation for Measuring Change
+[35,43,486]. 4th International Conference on Advanced Technologies, Computer Engineering and 
+Science (ICATCES 2025)
+[47]. A Cross-Benchmark Comparison of 87 Learning to Rank Methods
+[48,50,52,56,473]. A Dynamic Knowledge Base Updating Mechanism-Based Retrieval-
+Augmented Generation Framework for Intelligent Question-and-Answer Systems
+[49,51,474]. Dynamic Knowledge Bases
+[53,62,469]. Open-AutoGLM 智能体的核心理念与架构演进
+[54]. Small-Sample Thermal Fault Diagnosis Using Knowledge Graph and Generative Adversarial 
+Networks
+[55]. RUL: a Declarative Language for Updating RDF Data
+[57]. KNOWLEDGE-BASED SYSTEMS: Overview and Selected Examples
+[58,66,67,68]. A partial solution to knowledge base consistency maintenance in an evolving 
+advisory system
+[59,60,63,64]. Dynamic Knowledge Representation and its Applications
+[61]. An abductive framework for computing knowledge base updates
+[65,71]. Semantic Completeness and Mathematical Properties of DIKWP Mathematical System
+[69]. Ensuring Consistency of Dynamic Knowledge Graphs through Logical Graph 
+Transformations
+[70,72]. Reliable Reference for a DL Knowledge Base under Data Update
+内容为 AI 生成，可能不准确，请谨慎参考
+[73,86,417]. 大模型浪潮商业机遇、产业变革与未来趋势
+[74,418]. Identyfikacja przykładów dobrych praktyk nowatorskich rozwiązań w kształceniu 
+zawodowym
+[75,419]. 数字原生典型案例集 2024-2025
+[76,88]. 基于 RAG 的问答系统实现与优化
+[77,79,81,151,152,156,158,159,161,165,386,447,478]. Design of a RAG-based Q&A System for 
+University Academic Administration Assistants
+[78,408,416]. Intelligent Q&A application of rules and regulations based on large models and 
+RAG technology
+[80,82,479]. Marcel: A Lightweight and Open-Source Conversational Agent for University 
+Student Support
+[83,90]. 2025 年课程知识库建设完整指南：从技术架构到教学实践
+[84,87,89]. 中国企业 GEO 转型与应用趋势白皮书
+[85,297,299,307,492]. 字节跳动 RAG 实践手册
+[91,387,392]. AI 时代高校门户网站内容生态变革与智能知识库建设
+[92,95,98,113,440,483]. RAGAs 评估
+[93,96,99,441]. 从 0 到 1 开发企业级 AI 问答系统（含向量库选型+性能优化）
+[94,97,100,101,116]. RAG 技术全解析：打造下一代智能问答系统-阿里云开发者社区
+[102,402]. REFRAG: Rethinking RAG based Decoding
+[103,104,106]. RAG（Retrieval-Augmented Generation）技术原理与实战应用
+[105,107]. RAG 技术简介
+[108,112,463,480]. Retrieval-Augmented Generation for Large Language Models: A Survey
+[109]. A Systematic Review of Key Retrieval-Augmented Generation (RAG) Systems: Progress, 
+Gaps, and Future Directions
+[110,397,401]. Document Similarity with Retrieval-Augmented Generation: A Generative AI 
+内容为 AI 生成，可能不准确，请谨慎参考
+Approach
+[111]. RAG-based Question-Answering System for Algerian Tax law Context
+[114,442,484]. 评估 RAG 应用和 RAGA 的方法
+[115,117,485]. 检索增强生成 (RAG) 导论
+[118,119]. RAG 系统问答准确度的关键
+[120]. Measurement of retrieved chunk quality from real-world knowledge in retrieval-augmented 
+generation: A Phase 1 foundational study
+[121,124,475]. RAG 核心技术及实现方法解析
+[122,348,353,356,358,438]. RAG（Retrieval-Augmented Generation）的核心概念、组件与工
+作原理
+[123,150,160,162]. PoliChat: Retrieval Augmented Generation on University Documents and 
+Regulations
+[125,131]. RAG 面试基本问题
+[126]. Evaluation of a Retrieval-Augmented Generation-Powered Chatbot for Pre-CT Informed 
+Consent: a Prospective Comparative Study
+[127]. 為什麼要持續更新 RAG 知識庫？
+[128,140,443]. 本地化部署学科答疑机器人：RAG 技术在教育领域的应用与价值
+[129]. SecRAG: A Graph-Enhanced RAG Framework with Dynamic Prompt for Cybersecurity 
+Applications
+[130]. RAGOps: Operating and Managing Retrieval-Augmented Generation Pipelines
+[132,133,445,470]. 构建高准确率 RAG 系统，从语料质量与拆分策略做起
+[134]. 城市全域数字化转型 城市数字底座 建设指引
+[135,141]. AI 赋能公司规章制度：效率与合规的平衡之道
+[136]. 大模型智能体暑期研学营——记忆管理与检索增强
+[137,446,471]. Spring AI 框架中 RAG 技术的实现与应用
+内容为 AI 生成，可能不准确，请谨慎参考
+[138]. 大学文化素质教育第二课堂与校园文化共建研究
+[139]. A Regulatory Document Question-Answering Large Language Model for Campus 
+Regulations
+[142,145,147,154,157,309,466,477]. 检索增强生成技术支持下的校园问答系统研究
+[143,393,394]. GPT-only vs. GPT with RAG: A Study on Accuracy in Handling University-
+Specific Queries
+[144,148,155]. ISIITA 2025
+[146,167,420,439]. SVILUPPO DI UN'APP ANDROID PER LO STUDIO BASATA SU 
+SISTEMA RAG (RETRIEVAL-AUGMENTED-GENERATION)
+[149]. Evaluación de coherencia en respuestas generadas por un Chatbot para consulta de 
+legislación y reglamentos universitarios
+[153,169,385]. An Empirical Study of Multi-Agent RAG for Real-World University Admissions 
+Counseling
+[163,164,467]. RuleRAG: Rule-Guided Retrieval-Augmented Generation with Language Models 
+for Question Answering
+[166,170]. Retrieval-Augmented Generation for Domain-Specific Question Answering: A Case 
+Study on Pittsburgh and CMU
+[168]. RAG 在课堂问答中的应用：基于向量和图的检索范式比较
+[171]. RAG 研究现状
+[172,173,175,182,183,346,347,365,368,370,371]. Engineering RAG Systems for Real-World 
+Applications: Design, Development, and Evaluation
+[174,177,352,355,357,367,369]. 2026 年构建生产级 RAG 系统实战指南：从文档到部署
+[176]. 清华计算机系斩获 SIGIR 2024 两大奖项
+[178,179,434]. 2026 计算机毕业设计选题指南：50 个高通过率题目推荐，避开天坑轻松毕
+业
+[180,435]. 2026 届计算机毕业设计 50 个高通过率选题推荐：大数据+SpringBoot+小程序全
+内容为 AI 生成，可能不准确，请谨慎参考
+覆盖，附创新点详解
+[181,360,363,436]. 软件开发工作量评估及软件开发工作量评估标准
+[185]. 锐捷网络亮相 CERNET 华东南地区学术年会，共绘 “AI+智慧校园” 高质量发展新
+图景
+[186]. 工程总承包企业 PC 构件供应商选择研究
+[187]. 外文电子期刊学术绩效评价体系构建与案例研究
+[188]. Altmetrics 学术影响力传播贡献度实证研究*
+[189]. Modelo de Evaluación y Acreditación para los Programas de Educación con Modalidad 
+Virtual de la Corporación Universitaria Iberoamericana
+[190]. 毕业要求与课程达成情况评价系统的研究
+[191,194,197,212]. 向量数据库：技术原理、应用场景与选型策略
+[192,211]. 2026 年数据库技术深度研究报告
+[193,195,431]. 向量数据库概述：Faiss、Milvus、Qdrant、Chroma、Weaviate
+[196,199,432,460]. 在大模型应用爆发的今天，“向量数据库” 成了绕不开的关键技术
+[198,201,204,207,459]. Застосунок для оперативного аналізу вмісту електронних документів 
+з використанням штучного інтелекту
+[200,208,433,454]. AI Agent 智能体技术发展报告
+[202,205]. RAG-Based Query Engine using LLM and Vector DB for College Details
+[203]. MADADGAR: A Retrieval-Augmented Generation (RAG) using Spring AI for College 
+Specific Information
+[206]. 向量数据库（Vector Database）是专门用于存储和检索高维向量的数据库系统
+[209]. Retrieval-Augmented Generation for Telemedicine: A Privacy-Preserving AI Assistant for 
+Healthcare
+[210]. 向量数据库技术演进：从传统搜索引擎到 AI 原生基础设施
+[213,292]. 攻击者与防御者在 RAG 系统中的博弈：安全与隐私的挑战
+内容为 AI 生成，可能不准确，请谨慎参考
+[214,228]. RAG, Data Privacy, Attack Methods & Safe-Prompts
+[215,216]. RAG 系统安全与隐私：威胁模型与攻击面的形式化
+[217]. RAG Security and Privacy: Formalizing the Threat Model and Attack Surface
+[218,230]. The Conversational Network: AI-powered Language Models for Smarter Cable 
+Operations
+[219,300]. RAG 初级面试问题
+[220,221,234]. 大模型开发 | RAG 在实际开发中可能遇到的坑
+[222,311,488]. User Experiences in a RAG-Empowered Application
+[223,227,231,489]. Design and Evaluation of a RAG Chatbot in an Industrial Setting
+[224,225,233,236,303,308]. CONVEGNO 2025 IBRIDAZIONI FECONDE SAPERI, 
+PRATICHE, TERRITORI, RETE
+[226,235]. Managing Information Volatility and Density in Academic and Vocational Guidance: 
+Modeling a RAG-based Chatbot for Guidance Counselors in Morocco
+[229]. VAGUE-Gate: Plug-and-Play Local-Privacy Shield for Retrieval-Augmented Generation
+[232,444]. 人工智能赋能高等教育高质量发展
+[237,245]. GLM-4-9B-Chat-1M 多轮对话优化：上下文记忆与一致性保持
+[238,241,257]. Qwen3-VL 多轮图文对话：上下文保持能力部署实测
+[239]. BAI Access Rules
+[240]. Qwen3-VL-8B 多轮对话：上下文保持部署优化技巧
+[242,247,250,260,262]. 如何在多轮对话中维持对话上下文
+[243,248]. Handle Long Text
+[244]. SCULPTOR: EMPOWERING LLMs WITH COGNITIVE AGENCY VIA ACTIVE 
+CONTEXT MANAGEMENT
+[246,249,259,261]. ai 对话 上下文管理
+内容为 AI 生成，可能不准确，请谨慎参考
+[251,254,258]. DeepSeek 多轮对话如何保持上下文一致性
+[252]. DeepSeek 多轮对话如何保持上下文一致性？
+[253,256]. 面试篇-Prompt
+[255]. 如何通过 ChatGPT 实现多轮对话的上下文保持？
+[263,266,269,271,278,455]. 向量数据库性能对比
+[264,281,284,286,461]. 向量数据库对比:Weaviate、Milvus 和 Qdrant
+[265,267,275]. LLM-Rag 原理解析_递归
+[268,273,276,456]. 向量数据库技术全景解析：从核心架构到主流方案选型
+[270]. 开源向量数据库性能对比: Milvus, Chroma, Qdrant
+[272,279,282,287,457]. 【RAG 落地利器】Weaviate、Milvus、Qdrant 和 Chroma 向量数据库
+对比
+[274]. Comparison of Leading Vector Databases 2024-2025
+[277]. AI 大模型应用【理论】
+[280,288,289,290,291,458]. Qdrant vs Weaviate vs Milvus: Which Vector Database for Your 
+RAG Pipeline?
+[283]. Vector Database Comparison: Weaviate, Milvus, and Qdrant
+[285]. Спосіб оптимізації роботи мікросервісної системи підтримки з використанням баз 
+даних на основі моделі RAG
+[293,295,296]. Privacy Issues and Privacy-preserving Mechanisms in Retrieval-Augmented 
+Generation Systems
+[294,298]. ADAM: A Systematic Data Extraction Attack on Agent Memory via Adaptive 
+Querying
+[301,304]. 模型部署的安全与隐私保护
+[302,305,491]. Exploring Data Analysis Methods in Generative Models: From Fine-Tuning to 
+RAG Implementation
+内容为 AI 生成，可能不准确，请谨慎参考
+[306,493]. Integrating Access Control with Retrieval-Augmented Generation: A Proof of Concept 
+for Managing Sensitive Patient Profiles
+[312]. 企业知识管理的研究与发现(2024 年)
+[313,490]. RAG Chatbot System
+[315]. 在 RAG（Retrieval-Augmented Generation）系统中，语义切片技术与多维度检索优化
+策略研究
+[316,318,331,335,450]. RAG 应用构建及优化
+[317,319,321,448]. Generative AI for Customer Support: An Empirical Investigation of RAG-
+Based Chatbot Architectures in an ERP Scenario
+[320,451]. RAG 技术综述调研笔记
+[322,325,327]. SEM RAG: 增强语义知识的 RAG 以改善问答系统 *
+[323,326]. DENSE-RAG: Measuring and Improving Context Understanding for Consistent 
+Retrieval-Augmented Generation
+[324,330,449]. RAG 技术原理及实现
+[328,332]. Effective Conversational AI: Chatbots that work
+[329,333]. MoM: Mixtures of Scenario-Aware Document Memories for Retrieval-Augmented 
+Generation Systems
+[334]. 深入讲解如何在多轮对话中有效应用 RAG 技术
+[336,341,343,344,345,464]. AI Agent 开发与应用：基于大模型的智能体构建
+[337]. RAGs 多轮对话优化：上下文理解与对话状态管理技术
+[338,342]. RAG 多轮对话系统设计与实现
+[339,340,465]. rag 多轮会话
+[349]. ВЕСТНИК НАУКИ
+[350]. Building RAG systems at enterprise scale (20K+ docs): lessons from 10+ enterprise 
+implementations
+内容为 AI 生成，可能不准确，请谨慎参考
+[351,354,366,437]. AI 原生应用架构白皮书
+[359]. Entwicklung eines RAG-Systems für die semantische Suche nach wissenschaftlichen 
+Publikationen
+[361]. 软件开发工作量评估标准
+[362,364]. 工作量评估
+[372,375]. Comparing Retrieval-Augmented Generation (RAG) and Traditional QA Systems
+[373,376]. rag-web-ui/docs/tutorial/README.md at main · rag-web-ui/rag-web-ui
+[374,377]. 合肥飞尔推出基于 RAG 的视频问答新技术，革新用户体验_向量_内容_系统
+[378,379,380,382,421,468,476]. RAG（Retrieval-Augmented Generation）技术的创新方法综
+述
+[381]. EviNote-RAG: Enhancing RAG Models via Answer-Supportive Evidence Notes
+[383]. Build software better, together
+[384]. 教育类 RAG 系统技术方案全面对比
+[388,389,472]. “荔智规”规章制度智能系统正式上线运行
+[390]. AI 时代的数据桥梁：如何利用 API 高效对接大模型，实现智能应用开发？
+[391]. Interview Guide：一个开源的智能面试平台
+[395,404]. RAG Playground: A Framework for Systematic Evaluation of Retrieval Strategies and 
+Prompt Engineering in RAG Systems
+[396,400,405]. DESARROLLO DE UN SISTEMA DE CLASIFICACIÓN Y BÚSQUEDA DE 
+ARTÍCULOS ACADÉMICOS MEDIANTE CADENAS CON MODELOS DE LENGUAJE Y 
+CONTEXTUALIZACIÓN POR MODELOS RAG
+[398,399,407,412]. Evaluating RAG-based QA Systems: A Comparative Analysis of LLM as a 
+Judge, Traditional Metrics, and Human Alignment
+[403,406,410]. Evaluation of RAG Metrics for Question Answering in the Telecom Domain
+[409]. CRAG – 综合性 RAG 基准测试
+内容为 AI 生成，可能不准确，请谨慎参考
+[411]. SPR-RAG: Semantic Parsing Retriever-Enhanced Question Answering for Power Policy
+[413,414]. From Embeddings to Entities: A Comparative Analysis of RAG Architectures in 
+Academic Domains
+[415]. Evaluating Open-Source LLMs in RAG Systems: A Benchmark on Diploma Theses 
+Abstracts Using Ragas
+以下来源未被直接引用
+EmbedLLM: Learning Compact Representations of Large Language Models
+3D Multi-Object Tracking: A Baseline and New Evaluation Metrics
+NLP-Experimente: Evaluation, Metriken und Signifikanz
+Enhancing near duplicate image detection using spatial transformer networks in deep learning
+Dialog System Technology Challenge 7
+OLR 2021 CHALLENGE: DATASETS, RULES AND BASELINES
+Coupled intelligent prediction model for medium- to long-term runoff based on teleconnection 
+factors selection and spatial-temporal analysis
+Learning industrial descriptions: NLP tasks for acronym expansion
+SQUEEZE THE SOAKED SPONGE: EFFICIENT OFF-POLICY RFT FOR LARGE 
+LANGUAGE MODEL
+A dynamic knowledge base based search engine
+Belief Change Functions for Multi-Agent Systems
+LOGIC PROGRAMMING APPLICATIONS IN EDUCATIONAL ENVIRONMENTS
+Dynamic Update Mechanism of the Knowledge Graph for AI Literacy Course
+TOWARDS THE SEMANTIC WEB: KNOWLEDGE REPRESENTATION IN A DYNAMIC, 
+DISTRIBUTED ENVIRONMENT
+2025 年，RAG 技术到底进化成啥样了？
+内容为 AI 生成，可能不准确，请谨慎参考
+Diseño e implementación de un asistente de aprendizaje basado en RAG
+基于大模型和 RAG 的知识库问答系统
+Leveraging Large Language Models for Firm-Intelligence: A RAG Framework Approach.
+THELMA：基于任务的大型语言模型应用的整体评估-RAG 问答
+Ragas-评估指标
+AI Coworker: Unbiased Artificial Intelligence System for Corporate Education through Document 
+and Visual Media Processing
+Prompt Versioning
+PeopleSoft Campus Solutions 9.2: Campus Community
+FILE SYSTEMS IN ML SETTINGS
+北京市 2019 年政府工作报告
+政府工作报告
+运用 LangChain 赋能企业规章制度制定：深入解析 Retrieval ...
+INFERSITY V1: A RETRIEVAL-AUGMENTED GENERATION (RAG) BASED CHATBOT 
+FOR INTELLIGENT ACCESS TO UNIVERSITY RESOURCES
+Retrieval Augmented Generation-Based Chatbot for Prospective and Current University Students
+试论 EPC 总承包工程的进度计划管理
+结直肠围术期加速康复外科护理管理与实施
+Understanding RAG Systems Performance by Profiling Key Factors
+构建生产级检索增强生成（RAG）系统时的评估挑战与解决方案
+Aprimorando o atendimento ao cidadão com RAGLC (Retrieval Augmented Generation in Logic 
+Context), uma nova abordagem RAG
+手术机器人行业深度：引领临床新变革，商业化大潮蓄势待发
+准确评价学术成果的社会影响力
+内容为 AI 生成，可能不准确，请谨慎参考
+Questionnaire validation on the perception and satisfaction of academics with professional 
+evaluation systems
+《开放存取期刊学术影响力研究》
+基于 CSSCI 的图情类期刊 h 指数评价研究
+特征因子与影响因子及总被引频次的指标特性比较——基于“TOP 期刊 ...
+Evaluating RAG Technologies for News Technical Report TR 093
+多模态大模型：从理论到实践
+基于 RAG 技术的本地化智能问答系统
+Privacy Issues and Privacy-preserving Mechanisms in Retrieval-Augmented Generation (RAG) 
+Systems
+Practical LLM Security: Takeaways From a Year in the Trenches
+中央预算内投资｜政策汇编（2016.04-2024.04）
+EPC 工程总承包企业的核心竞争力要素分析与评价研究
+Leveraging Retrieval-Augmented Generation for Student Support: A Document-Centric QA 
+System for the AUEB Informatics Studies Guide
+Action-Item-Driven Summarization of Long Meeting Transcripts
+2025 低空经济 重点政策汇编
+文本处理
+LCFO: Long Context and Long Form Output Dataset and Benchmarking
+Label-dependent Paragraph Selection for Efficient Neural Long Document Classification
+向量数据库深度对比：Weaviate、Milvus 与 Qdrant
+Qdrant vs Milvus
+Milvus vs qdrant - compare differences and reviews? | LibHunt
+向量数据库选型对比
+内容为 AI 生成，可能不准确，请谨慎参考
+Qdrant Vs Milvus Comparison
+PaperHelper: 基于知识的 LLM 问答论文阅读助手
+DBMS > Milvus vs. Qdrant
+Milvus vs. Qdrant
+AI Agent 进化全景：从语言问答到具身智能的技术、商业与治理生态
+大语言模型安全技术发展趋势（三）
+【大模型】RAG 实践
+AuditRAG: An ARAG Approach for Auditing Dutch Annual Reports: Ensuring Compliance
+SAGE: A Framework of Precise Retrieval for RAG
+一种基于 RAG 的多轮对话处理方法、装置以及设备
+基于 2025 年最新开源项目调研的多模态 RAG 系统评估报告
+软件工作量评估标准
+Challenges in Evaluating RAG System Performance
+SIGIR 2024 获奖结果公布，清华计算机系斩获多项大奖
+DeepSolution
+【Java 项目创新】AI 问答聊天系统、仿 ChatGPT 系统，基于 Springboot+Vue+本地大语言
+模型，可作为毕业设计创新点添加_哔哩哔哩_bilibili
+2024 最新版 Transformer！从入门到实战，原理解读+源码复现，全程干货讲解，拿走不谢！
+_哔哩哔哩_bilibili
+RAGFlow
+2025 年“人工智能+”行业标杆案例荟萃
+谈 EPC 总承包的成本控制
+論文を対象とした RAG システムにおける質問分類に基づく動的検索
+Reasoning-Intensive Regression
+内容为 AI 生成，可能不准确，请谨慎参考
+CRAG -- Comprehensive RAG Benchmark
+HubLink: A Novel Question Answering Retrieval Approach over Knowledge Graphs
+【AIGC】大模型面试高频考点-RAG 系统评估
